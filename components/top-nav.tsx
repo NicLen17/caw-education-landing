@@ -1,10 +1,13 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
+import { List, X } from "@phosphor-icons/react"
+import { DemoCta } from "@/components/landing/demo-cta"
+import { transitionSubtle } from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
 
 export function TopNav() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -27,114 +30,137 @@ export function TopNav() {
   const navLinks = [
     { label: "Producto", href: "#features" },
     { label: "Módulos", href: "#modules" },
-    { label: "Casos de uso", href: "#cases" },
+    { label: "Niveles", href: "#solutions" },
     { label: "FAQ", href: "#faq" },
   ]
 
   return (
-    <motion.header
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
-      }}
-      animate={isHidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm supports-[backdrop-filter]:bg-white/60"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="container mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-            {/* Increased logo size to 220px width */}
+    <>
+      <motion.header
+        variants={{ visible: { y: 0 }, hidden: { y: "-120%" } }}
+        animate={isHidden ? "hidden" : "visible"}
+        transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+        className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-6"
+      >
+        <nav
+          className={cn(
+            "pointer-events-auto flex w-full max-w-5xl items-center justify-between gap-4 rounded-full px-4 py-2.5 md:px-6",
+            transitionSubtle,
+            isScrolled
+              ? "bg-background/80 shadow-[0_8px_32px_-12px_rgba(15,23,42,0.12)] ring-1 ring-black/[0.05] backdrop-blur-3xl"
+              : "bg-background/50 ring-1 ring-black/[0.04] backdrop-blur-xl",
+          )}
+          aria-label="Navegación principal"
+        >
+          <Link
+            href="/"
+            className={cn(
+              "flex shrink-0 items-center rounded-full px-2 py-1",
+              transitionSubtle,
+              "hover:opacity-80",
+            )}
+          >
             <Image
               src="/logo-caw-education.svg"
               alt="CAW Education"
-              width={220}
-              height={55}
-              className="h-12 w-auto relative z-10 transition-transform group-hover:scale-105"
+              width={180}
+              height={45}
+              className="h-9 w-auto md:h-10"
+              priority
             />
+          </Link>
+
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-medium text-muted-foreground",
+                  transitionSubtle,
+                  "hover:text-foreground hover:bg-foreground/[0.04]",
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
-        </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors rounded-full hover:bg-gray-100/50"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+          <div className="hidden items-center gap-3 md:flex">
+            <DemoCta size="sm" />
+          </div>
 
-        <div className="hidden md:flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100/50 rounded-full px-6"
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className={cn(
+              "relative flex h-10 w-10 items-center justify-center rounded-full md:hidden",
+              transitionSubtle,
+              "hover:bg-foreground/[0.04]",
+            )}
+            aria-expanded={isMobileMenuOpen}
+            aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            Iniciar sesión
-          </Button>
-          <Button
-            size="sm"
-            className="rounded-full px-6 bg-gray-900 text-white hover:bg-gray-800 shadow-lg shadow-gray-900/20 transition-all hover:-translate-y-0.5"
-          >
-            Solicitar demo
-          </Button>
-        </div>
+            <List
+              className={cn(
+                "absolute h-5 w-5 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                isMobileMenuOpen ? "rotate-45 opacity-0" : "rotate-0 opacity-100",
+              )}
+              weight="light"
+            />
+            <X
+              className={cn(
+                "absolute h-5 w-5 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                isMobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-45 opacity-0",
+              )}
+              weight="light"
+            />
+          </button>
+        </nav>
+      </motion.header>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMobileMenuOpen ? (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            className="fixed inset-0 z-40 bg-background/90 backdrop-blur-3xl md:hidden"
           >
-            <div className="py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
+            <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-2 px-6 pt-24">
+              {navLinks.map((link, index) => (
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  className="block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.08 + index * 0.06,
+                    ease: [0.32, 0.72, 0, 1],
+                  }}
                 >
-                  {link.label}
-                </a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block rounded-full px-6 py-3 text-2xl font-display font-medium text-foreground transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:opacity-70"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <div className="pt-4 space-y-2">
-                <Button variant="ghost" size="sm" className="w-full">
-                  Iniciar sesión
-                </Button>
-                <Button
-                  size="sm"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                >
-                  Solicitar demo
-                </Button>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35, ease: [0.32, 0.72, 0, 1] }}
+                className="mt-8"
+              >
+                <DemoCta size="lg" />
+              </motion.div>
             </div>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
-    </motion.header>
+    </>
   )
 }

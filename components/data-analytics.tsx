@@ -1,229 +1,180 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { BarChart3, TrendingUp, PieChart, Download, Activity, Target } from "lucide-react"
+import {
+  Pulse,
+  Target,
+  TrendUp,
+  DownloadSimple,
+  ChartBar,
+  ChartPie,
+} from "@phosphor-icons/react"
+import { SectionHeader } from "@/components/landing/section-header"
+import { BezelCard } from "@/components/landing/bezel-card"
+import { bezelInner, bezelOuter, transitionSubtle } from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
+
+const features = [
+  {
+    icon: Pulse,
+    title: "Patrones en tiempo real",
+    description: "Detecta tendencias y comportamientos académicos al instante.",
+  },
+  {
+    icon: Target,
+    title: "Medición de efectividad",
+    description: "Evalúa el rendimiento de cursos, docentes y programas.",
+  },
+  {
+    icon: TrendUp,
+    title: "Decisiones basadas en datos",
+    description: "Optimiza la gestión educativa con información precisa.",
+  },
+  {
+    icon: DownloadSimple,
+    title: "Reportes personalizados",
+    description: "Exporta métricas para informes institucionales y auditorías.",
+  },
+]
+
+const metrics = [
+  {
+    icon: ChartBar,
+    label: "Asistencia",
+    value: "94.5%",
+    bars: [65, 80, 75, 90, 85, 95, 88],
+  },
+  {
+    icon: ChartPie,
+    label: "Rendimiento",
+    value: "87.2%",
+    type: "ring" as const,
+  },
+  {
+    icon: TrendUp,
+    label: "Participación",
+    value: "+23%",
+    type: "line" as const,
+  },
+]
 
 export function DataAnalytics() {
-  const features = [
-    {
-      icon: Activity,
-      title: "Patrones en tiempo real",
-      description: "Detecta tendencias y comportamientos académicos al instante",
-    },
-    {
-      icon: Target,
-      title: "Medición de efectividad",
-      description: "Evalúa el rendimiento de cursos, docentes y programas",
-    },
-    {
-      icon: TrendingUp,
-      title: "Decisiones basadas en datos",
-      description: "Optimiza la gestión educativa con información precisa",
-    },
-    {
-      icon: Download,
-      title: "Reportes personalizados",
-      description: "Exporta métricas para informes institucionales y auditorías",
-    },
-  ]
-
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-500/10" />
+    <section className="relative overflow-hidden bg-foreground px-4 py-24 text-background md:px-6 md:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.06),transparent)]" />
 
-      {/* Animated orbs */}
-      <motion.div
-        className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-purple-400/30 to-blue-500/30 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-cyan-400/30 to-purple-500/30 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.5, 0.3, 0.5],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
+      <div className="container relative z-10 mx-auto max-w-6xl">
+        <SectionHeader
+          eyebrow="Análisis inteligente"
+          title="Transforma datos en decisiones"
+          description="CAW Education incorpora un potente módulo de análisis que convierte la información académica en conocimiento accionable mediante paneles interactivos y gráficos dinámicos."
+          className="[&_h2]:text-background [&_p]:text-background/60 [&_span]:bg-background/10 [&_span]:text-background/70"
+        />
 
-      <div className="relative max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 mb-6"
-          >
-            <BarChart3 className="w-5 h-5 text-purple-400" />
-            <span className="text-sm font-medium bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Análisis Inteligente
-            </span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Transforma datos en decisiones</h2>
-          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            CAW Education incorpora un potente módulo de análisis de datos que transforma la información académica en
-            conocimiento accionable. Desde estadísticas de asistencia y rendimiento hasta participación docente y
-            eficiencia administrativa, todo se presenta mediante paneles interactivos y gráficos dinámicos.
-          </p>
-        </motion.div>
-
-        {/* Features grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="relative group"
+              transition={{ duration: 0.6, delay: index * 0.06, ease: [0.32, 0.72, 0, 1] }}
+              className={cn(bezelOuter, "bg-white/[0.04] ring-white/10")}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-              <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-6 h-6 text-white" />
+              <div
+                className={cn(
+                  bezelInner,
+                  "bg-white/[0.03] p-6 shadow-none",
+                  transitionSubtle,
+                  "hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)]",
+                )}
+              >
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
+                  <feature.icon className="h-5 w-5 text-background/80" weight="light" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="mb-2 font-semibold text-background">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-background/60">{feature.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Visual representation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl" />
-          <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12">
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Chart visualization placeholders */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl p-6 border border-purple-500/20"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                    <BarChart3 className="w-5 h-5 text-white" />
+        <div className={cn(bezelOuter, "bg-white/[0.04] ring-white/10")}>
+          <div className={cn(bezelInner, "bg-white/[0.03] p-6 shadow-none md:p-10")}>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {metrics.map((metric, index) => (
+                <motion.div
+                  key={metric.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.08, ease: [0.32, 0.72, 0, 1] }}
+                  className={cn(
+                    "rounded-[1.5rem] bg-background/[0.04] p-6 ring-1 ring-background/10",
+                    transitionSubtle,
+                    "hover:-translate-y-0.5",
+                  )}
+                >
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
+                      <metric.icon className="h-5 w-5 text-background/80" weight="light" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-background/50">{metric.label}</p>
+                      <p className="text-2xl font-bold text-background">{metric.value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Asistencia</p>
-                    <p className="text-2xl font-bold text-white">94.5%</p>
-                  </div>
-                </div>
-                <div className="h-32 flex items-end gap-2">
-                  {[65, 80, 75, 90, 85, 95, 88].map((height, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${height}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      className="flex-1 bg-gradient-to-t from-purple-500 to-blue-400 rounded-t"
-                    />
-                  ))}
-                </div>
-              </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl p-6 border border-blue-500/20"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
-                    <PieChart className="w-5 h-5 text-white" />
+                  <div className="flex h-28 items-end gap-1.5">
+                    {metric.bars
+                      ? metric.bars.map((height, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ scaleY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 0.5,
+                              delay: 0.2 + i * 0.06,
+                              ease: [0.32, 0.72, 0, 1],
+                            }}
+                            className="flex-1 rounded-t bg-background/25"
+                            style={{ height: `${height}%`, transformOrigin: "bottom" }}
+                          />
+                        ))
+                      : metric.type === "ring"
+                        ? (
+                            <div className="flex h-full w-full items-center justify-center">
+                              <div className="h-20 w-20 rounded-full border-[6px] border-background/15 border-t-background/60" />
+                            </div>
+                          )
+                        : (
+                            <svg
+                              className="h-full w-full"
+                              viewBox="0 0 100 100"
+                              preserveAspectRatio="none"
+                              aria-hidden
+                            >
+                              <path
+                                d="M 0 80 Q 25 60, 50 50 T 100 20"
+                                fill="none"
+                                stroke="rgba(255,255,255,0.45)"
+                                strokeWidth="2"
+                              />
+                            </svg>
+                          )}
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Rendimiento</p>
-                    <p className="text-2xl font-bold text-white">87.2%</p>
-                  </div>
-                </div>
-                <div className="h-32 flex items-center justify-center">
-                  <motion.div
-                    initial={{ scale: 0, rotate: 0 }}
-                    whileInView={{ scale: 1, rotate: 360 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1 }}
-                    className="w-24 h-24 rounded-full border-8 border-blue-500/30 border-t-blue-500"
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl p-6 border border-cyan-500/20"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Participación</p>
-                    <p className="text-2xl font-bold text-white">+23%</p>
-                  </div>
-                </div>
-                <div className="h-32 flex items-end">
-                  <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <motion.path
-                      initial={{ pathLength: 0 }}
-                      whileInView={{ pathLength: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.5 }}
-                      d="M 0 80 Q 25 60, 50 50 T 100 20"
-                      fill="none"
-                      stroke="url(#analytics-gradient)"
-                      strokeWidth="3"
-                    />
-                    <defs>
-                      <linearGradient id="analytics-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#06b6d4" />
-                        <stop offset="100%" stopColor="#a855f7" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 text-center"
-            >
-              <p className="text-gray-300 leading-relaxed">
-                Con este enfoque, CAW Education une la administración académica con el análisis inteligente, ofreciendo
-                una visión completa para estudiantes, docentes, directivos y gestores institucionales.
-              </p>
-            </motion.div>
+            <p className="mt-8 text-center text-sm leading-relaxed text-background/60">
+              CAW Education une la administración académica con el análisis inteligente,
+              ofreciendo una visión completa para estudiantes, docentes, directivos y gestores
+              institucionales.
+            </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

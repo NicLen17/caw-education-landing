@@ -1,151 +1,163 @@
 "use client"
 
 import Image from "next/image"
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react"
+import Link from "next/link"
+import { EnvelopeSimple, Phone, MapPin } from "@phosphor-icons/react"
+import { hoverLink, transitionSubtle } from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
+
+const productLinks = ["Características", "Módulos", "Precios", "Integraciones"]
+const companyLinks = [
+  { label: "Sobre nosotros", href: "#" },
+  { label: "Casos de éxito", href: "#solutions" },
+  { label: "Blog", href: "#" },
+  { label: "Carreras", href: "#" },
+]
+const legalLinks = ["Términos de servicio", "Política de privacidad", "Cookies"]
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="relative overflow-hidden bg-gray-900 pt-24 pb-12">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[800px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-          {/* Brand */}
-          <div className="space-y-6">
+    <footer className="relative overflow-hidden bg-foreground px-4 py-24 text-background md:px-6">
+      <div className="container relative z-10 mx-auto">
+        <div className="mb-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="space-y-5">
             <Image
               src="/logo-caw-education.svg"
               alt="CAW Education"
-              width={240}
-              height={60}
-              className="h-14 w-auto brightness-0 invert opacity-90"
+              width={200}
+              height={50}
+              className="h-10 w-auto brightness-0 invert opacity-90"
             />
-            <p className="text-gray-400 leading-relaxed max-w-xs">
+            <p className="max-w-xs text-sm leading-relaxed text-background/60">
               Transformando la educación con tecnología intuitiva, segura y potente.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors backdrop-blur-sm"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors backdrop-blur-sm"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors backdrop-blur-sm"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5 text-white" />
-              </a>
-            </div>
           </div>
 
-          {/* Product */}
           <div>
-            <h3 className="font-bold text-white mb-6 text-lg">Producto</h3>
-            <ul className="space-y-4">
-              {["Características", "Módulos", "Precios", "Integraciones"].map((item) => (
+            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.15em] text-background/50">
+              Producto
+            </h3>
+            <ul className="space-y-3">
+              {productLinks.map((item) => (
                 <li key={item}>
-                  <a
+                  <Link
                     href="#"
-                    className="text-gray-400 hover:text-blue-400 transition-colors flex items-center gap-2 group"
+                    className={cn(
+                      "text-sm text-background/70",
+                      hoverLink,
+                      transitionSubtle,
+                      "hover:translate-x-0.5",
+                    )}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Empresa</h3>
-            <ul className="space-y-3 text-sm text-gray-400 hover:text-white transition-colors">
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Sobre nosotros
-                </a>
-              </li>
-              <li>
-                <a href="#cases" className="hover:text-white transition-colors">
-                  Casos de éxito
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Carreras
-                </a>
-              </li>
+            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.15em] text-background/50">
+              Empresa
+            </h3>
+            <ul className="space-y-3">
+              {companyLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "text-sm text-background/70",
+                      hoverLink,
+                      transitionSubtle,
+                      "hover:translate-x-0.5",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4 text-white">Contacto</h3>
-            <ul className="space-y-3 text-sm text-gray-400 hover:text-white transition-colors">
-              <li className="flex items-start gap-2">
-                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:cawtecharg@gmail.com" className="hover:text-white transition-colors">
+            <h3 className="mb-5 text-sm font-semibold uppercase tracking-[0.15em] text-background/50">
+              Contacto
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="mailto:cawtecharg@gmail.com"
+                  className={cn(
+                    "flex items-start gap-3 text-sm text-background/70",
+                    hoverLink,
+                    transitionSubtle,
+                  )}
+                >
+                  <EnvelopeSimple className="mt-0.5 h-4 w-4 shrink-0" weight="light" />
                   cawtecharg@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-2">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <li>
                 <a
                   href="https://wa.me/5493815709862"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className={cn(
+                    "flex items-start gap-3 text-sm text-background/70",
+                    hoverLink,
+                    transitionSubtle,
+                  )}
                 >
+                  <Phone className="mt-0.5 h-4 w-4 shrink-0" weight="light" />
                   +54 9 381 570-9862
                 </a>
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Tafí Viejo, Tucumán, Argentina</span>
+              <li className="flex items-start gap-3 text-sm text-background/60">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" weight="light" />
+                Tafí Viejo, Tucumán, Argentina
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-sm text-gray-500">© 2025 CAW TECH. Todos los derechos reservados.</p>
-            <div className="flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
-              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Powered by</span>
-              <div className="relative w-16 h-16">
-                <Image src="/caw-tech-logo.png" alt="CAW Tech" fill className="object-contain" />
-              </div>
-            </div>
+        <div className="flex flex-col items-center justify-between gap-6 border-t border-background/10 pt-8 md:flex-row">
+          <div className="flex flex-col items-center gap-2 text-center md:items-start md:text-left">
+            <p className="text-sm text-background/50">
+              © {currentYear} CAW Education. Todos los derechos reservados.
+            </p>
+            <p className="text-sm text-background/50">
+              Desarrollado por{" "}
+              <a
+                href="https://caw.com.ar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "font-medium text-background/80 underline-offset-4",
+                  transitionSubtle,
+                  "hover:underline hover:text-background",
+                )}
+              >
+                Caw tech
+              </a>
+            </p>
           </div>
 
-          <div className="flex gap-6 text-sm text-gray-400 hover:text-white transition-colors">
-            <a href="#" className="hover:text-white transition-colors">
-              Términos de servicio
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Política de privacidad
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Cookies
-            </a>
+          <div className="flex flex-wrap justify-center gap-6">
+            {legalLinks.map((item) => (
+              <Link
+                key={item}
+                href="#"
+                className={cn(
+                  "text-sm text-background/60",
+                  hoverLink,
+                  transitionSubtle,
+                )}
+              >
+                {item}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

@@ -17,7 +17,8 @@ export default function LandingPage() {
   return (
     <>
       <StructuredData />
-      <div className="min-h-screen bg-background">
+      <div className="relative min-h-screen bg-background">
+        <div className="grain-overlay" aria-hidden />
         <TopNav />
         <main>
           <Hero />
