@@ -10,6 +10,13 @@ import {
 } from "@phosphor-icons/react"
 import { SectionHeader } from "@/components/landing/section-header"
 import { BezelCard } from "@/components/landing/bezel-card"
+import {
+  iconPrimary,
+  iconTeal,
+  iconWrapPrimary,
+  iconWrapTeal,
+} from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
 
 const modules = [
   {
@@ -64,10 +71,18 @@ export function ModulesShowcase() {
           {modules.map((module, index) => (
             <BezelCard key={module.title} delay={index * 0.05} innerClassName="flex flex-col">
               <div className="mb-5 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/[0.04]">
-                  <module.icon className="h-6 w-6 text-foreground/65" weight="light" />
+                <div
+                  className={cn(
+                    "h-12 w-12",
+                    index % 2 === 0 ? iconWrapPrimary : iconWrapTeal,
+                  )}
+                >
+                  <module.icon
+                    className={cn("h-6 w-6", index % 2 === 0 ? iconPrimary : iconTeal)}
+                    weight="light"
+                  />
                 </div>
-                <span className="rounded-full bg-foreground/[0.04] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-primary">
                   Módulo {index + 1}
                 </span>
               </div>
@@ -81,7 +96,7 @@ export function ModulesShowcase() {
                     key={feature}
                     className="flex items-center gap-2 text-sm text-muted-foreground"
                   >
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-foreground/30" />
+                    <span className="h-1 w-1 shrink-0 rounded-full bg-primary/50" />
                     {feature}
                   </li>
                 ))}

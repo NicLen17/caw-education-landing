@@ -50,7 +50,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-muted/40 px-4 py-24 md:px-6 md:py-32">
+    <section id="faq" className="section-mist relative overflow-hidden px-4 py-24 md:px-6 md:py-32">
       <div className="container relative z-10 mx-auto max-w-3xl">
         <SectionHeader
           eyebrow="FAQ"
@@ -70,7 +70,7 @@ export function FAQ() {
                   className={cn(
                     "px-6 py-5 text-left hover:no-underline",
                     transitionSubtle,
-                    "hover:bg-foreground/[0.02]",
+                    "hover:bg-primary/5",
                   )}
                 >
                   <span className="pr-4 text-base font-semibold text-foreground">

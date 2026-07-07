@@ -60,15 +60,15 @@ const metrics = [
 
 export function DataAnalytics() {
   return (
-    <section className="relative overflow-hidden bg-foreground px-4 py-24 text-background md:px-6 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(255,255,255,0.06),transparent)]" />
+    <section className="relative overflow-hidden bg-brand-dark px-4 py-24 text-white md:px-6 md:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(32,144,240,0.18),transparent)]" />
 
       <div className="container relative z-10 mx-auto max-w-6xl">
         <SectionHeader
           eyebrow="Análisis inteligente"
           title="Transforma datos en decisiones"
           description="CAW Education incorpora un potente módulo de análisis que convierte la información académica en conocimiento accionable mediante paneles interactivos y gráficos dinámicos."
-          className="[&_h2]:text-background [&_p]:text-background/60 [&_span]:bg-background/10 [&_span]:text-background/70"
+          className="[&_h2]:text-white [&_p]:text-white/65 [&_span]:bg-brand-blue/20 [&_span]:text-brand-teal"
         />
 
         <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -79,28 +79,28 @@ export function DataAnalytics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.06, ease: [0.32, 0.72, 0, 1] }}
-              className={cn(bezelOuter, "bg-white/[0.04] ring-white/10")}
+              className={cn(bezelOuter, "bg-brand-blue/10 ring-brand-blue/20")}
             >
               <div
                 className={cn(
                   bezelInner,
-                  "bg-white/[0.03] p-6 shadow-none",
+                  "bg-brand-navy/40 p-6 shadow-none",
                   transitionSubtle,
-                  "hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)]",
+                  "hover:-translate-y-0.5 hover:shadow-[0_12px_40px_-12px_rgba(32,144,240,0.35)]",
                 )}
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
-                  <feature.icon className="h-5 w-5 text-background/80" weight="light" />
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue/20">
+                  <feature.icon className="h-5 w-5 text-brand-blue" weight="light" />
                 </div>
-                <h3 className="mb-2 font-semibold text-background">{feature.title}</h3>
-                <p className="text-sm leading-relaxed text-background/60">{feature.description}</p>
+                <h3 className="mb-2 font-semibold text-white">{feature.title}</h3>
+                <p className="text-sm leading-relaxed text-white/60">{feature.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className={cn(bezelOuter, "bg-white/[0.04] ring-white/10")}>
-          <div className={cn(bezelInner, "bg-white/[0.03] p-6 shadow-none md:p-10")}>
+        <div className={cn(bezelOuter, "bg-brand-blue/10 ring-brand-blue/20")}>
+          <div className={cn(bezelInner, "bg-brand-navy/40 p-6 shadow-none md:p-10")}>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {metrics.map((metric, index) => (
                 <motion.div
@@ -110,18 +110,18 @@ export function DataAnalytics() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.08, ease: [0.32, 0.72, 0, 1] }}
                   className={cn(
-                    "rounded-[1.5rem] bg-background/[0.04] p-6 ring-1 ring-background/10",
+                    "rounded-[1.5rem] bg-brand-blue/10 p-6 ring-1 ring-brand-blue/20",
                     transitionSubtle,
                     "hover:-translate-y-0.5",
                   )}
                 >
                   <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/10">
-                      <metric.icon className="h-5 w-5 text-background/80" weight="light" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue/25">
+                      <metric.icon className="h-5 w-5 text-brand-blue" weight="light" />
                     </div>
                     <div>
-                      <p className="text-xs text-background/50">{metric.label}</p>
-                      <p className="text-2xl font-bold text-background">{metric.value}</p>
+                      <p className="text-xs text-white/50">{metric.label}</p>
+                      <p className="text-2xl font-bold text-white">{metric.value}</p>
                     </div>
                   </div>
 
@@ -138,14 +138,14 @@ export function DataAnalytics() {
                               delay: 0.2 + i * 0.06,
                               ease: [0.32, 0.72, 0, 1],
                             }}
-                            className="flex-1 rounded-t bg-background/25"
+                            className="flex-1 rounded-t bg-brand-blue/70"
                             style={{ height: `${height}%`, transformOrigin: "bottom" }}
                           />
                         ))
                       : metric.type === "ring"
                         ? (
                             <div className="flex h-full w-full items-center justify-center">
-                              <div className="h-20 w-20 rounded-full border-[6px] border-background/15 border-t-background/60" />
+                              <div className="h-20 w-20 rounded-full border-[6px] border-brand-teal/25 border-t-brand-teal" />
                             </div>
                           )
                         : (
@@ -158,7 +158,7 @@ export function DataAnalytics() {
                               <path
                                 d="M 0 80 Q 25 60, 50 50 T 100 20"
                                 fill="none"
-                                stroke="rgba(255,255,255,0.45)"
+                                stroke="rgba(64,176,176,0.8)"
                                 strokeWidth="2"
                               />
                             </svg>
@@ -168,7 +168,7 @@ export function DataAnalytics() {
               ))}
             </div>
 
-            <p className="mt-8 text-center text-sm leading-relaxed text-background/60">
+            <p className="mt-8 text-center text-sm leading-relaxed text-white/60">
               CAW Education une la administración académica con el análisis inteligente,
               ofreciendo una visión completa para estudiantes, docentes, directivos y gestores
               institucionales.

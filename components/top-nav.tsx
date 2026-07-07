@@ -47,8 +47,8 @@ export function TopNav() {
             "pointer-events-auto flex w-full max-w-5xl items-center justify-between gap-4 rounded-full px-4 py-2.5 md:px-6",
             transitionSubtle,
             isScrolled
-              ? "bg-background/80 shadow-[0_8px_32px_-12px_rgba(15,23,42,0.12)] ring-1 ring-black/[0.05] backdrop-blur-3xl"
-              : "bg-background/50 ring-1 ring-black/[0.04] backdrop-blur-xl",
+              ? "bg-background/80 shadow-[0_8px_32px_-12px_rgba(32,144,240,0.15)] ring-1 ring-primary/10 backdrop-blur-3xl"
+              : "bg-background/50 ring-1 ring-primary/8 backdrop-blur-xl",
           )}
           aria-label="Navegación principal"
         >
@@ -78,7 +78,7 @@ export function TopNav() {
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium text-muted-foreground",
                   transitionSubtle,
-                  "hover:text-foreground hover:bg-foreground/[0.04]",
+                  "hover:text-primary hover:bg-primary/8",
                 )}
               >
                 {link.label}
@@ -96,7 +96,7 @@ export function TopNav() {
             className={cn(
               "relative flex h-10 w-10 items-center justify-center rounded-full md:hidden",
               transitionSubtle,
-              "hover:bg-foreground/[0.04]",
+              "hover:bg-primary/8",
             )}
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}

@@ -12,6 +12,13 @@ import {
 } from "@phosphor-icons/react"
 import { SectionHeader } from "@/components/landing/section-header"
 import { BezelCard } from "@/components/landing/bezel-card"
+import {
+  iconPrimary,
+  iconTeal,
+  iconWrapPrimary,
+  iconWrapTeal,
+} from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
 
 const problems = [
   {
@@ -80,8 +87,8 @@ export function ProblemStatement() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {problems.map((problem, index) => (
                 <BezelCard key={problem.title} delay={index * 0.06}>
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/[0.04]">
-                    <problem.icon className="h-5 w-5 text-foreground/60" weight="light" />
+                  <div className={cn("mb-4 h-10 w-10", iconWrapTeal)}>
+                    <problem.icon className={cn("h-5 w-5", iconTeal)} weight="light" />
                   </div>
                   <h4 className="mb-2 font-semibold text-foreground">{problem.title}</h4>
                   <p className="text-sm leading-relaxed text-muted-foreground">
@@ -102,8 +109,8 @@ export function ProblemStatement() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {solutions.map((solution, index) => (
                 <BezelCard key={solution.title} delay={0.2 + index * 0.06}>
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/[0.04]">
-                    <solution.icon className="h-5 w-5 text-foreground/60" weight="light" />
+                  <div className={cn("mb-4 h-10 w-10", iconWrapPrimary)}>
+                    <solution.icon className={cn("h-5 w-5", iconPrimary)} weight="light" />
                   </div>
                   <h4 className="mb-2 font-semibold text-foreground">{solution.title}</h4>
                   <p className="text-sm leading-relaxed text-muted-foreground">

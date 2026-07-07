@@ -30,7 +30,7 @@ export function SectionHeader({
         className,
       )}
     >
-      <span className="mb-5 inline-flex rounded-full bg-foreground/[0.04] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+      <span className="mb-5 inline-flex rounded-full bg-primary/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-primary">
         {eyebrow}
       </span>
       <h2 className="font-display text-4xl font-bold tracking-tight text-foreground md:text-5xl text-balance">

@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { DemoCta } from "@/components/landing/demo-cta"
 import { SectionHeader } from "@/components/landing/section-header"
-import { bezelInner, bezelOuter, transitionSubtle } from "@/lib/landing-styles"
+import { bezelInner, bezelOuter, iconPrimary, iconWrapPrimary, transitionSubtle } from "@/lib/landing-styles"
 import { cn } from "@/lib/utils"
 
 const benefits = [
@@ -63,8 +63,8 @@ export function DemoForm() {
             <ul className="space-y-4">
               {benefits.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-foreground/[0.04]">
-                    <CheckCircle className="h-4 w-4 text-foreground/60" weight="light" />
+                  <div className={cn("h-8 w-8 shrink-0", iconWrapPrimary)}>
+                    <CheckCircle className={cn("h-4 w-4", iconPrimary)} weight="light" />
                   </div>
                   <span className="text-sm font-medium text-foreground">{item}</span>
                 </li>
@@ -86,8 +86,8 @@ export function DemoForm() {
             <div className={cn(bezelInner, "p-6 shadow-none md:p-8")}>
               {isSubmitted ? (
                 <div className="py-10 text-center">
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-foreground/[0.04]">
-                    <CheckCircle className="h-8 w-8 text-foreground/70" weight="light" />
+                  <div className={cn("mx-auto mb-4 h-16 w-16 rounded-full", iconWrapPrimary)}>
+                    <CheckCircle className={cn("h-8 w-8", iconPrimary)} weight="light" />
                   </div>
                   <h3 className="mb-2 text-xl font-semibold text-foreground">¡Gracias!</h3>
                   <p className="text-sm text-muted-foreground">
@@ -171,9 +171,9 @@ export function DemoForm() {
                   <button
                     type="submit"
                     className={cn(
-                      "w-full rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background",
+                      "w-full rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground",
                       transitionSubtle,
-                      "hover:shadow-[0_12px_32px_-12px_rgba(15,23,42,0.3)] active:scale-[0.98]",
+                      "hover:shadow-[0_12px_32px_-12px_rgba(32,144,240,0.45)] active:scale-[0.98]",
                     )}
                   >
                     Enviar solicitud

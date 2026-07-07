@@ -3,6 +3,13 @@
 import { Baby, Student, GraduationCap } from "@phosphor-icons/react"
 import { SectionHeader } from "@/components/landing/section-header"
 import { BezelCard } from "@/components/landing/bezel-card"
+import {
+  iconPrimary,
+  iconTeal,
+  iconWrapPrimary,
+  iconWrapTeal,
+} from "@/lib/landing-styles"
+import { cn } from "@/lib/utils"
 
 const levels = [
   {
@@ -27,7 +34,7 @@ const levels = [
 
 export function SolutionsByLevel() {
   return (
-    <section id="solutions" className="relative overflow-hidden bg-muted/30 px-4 py-24 md:px-6 md:py-32">
+    <section id="solutions" className="section-ice relative overflow-hidden px-4 py-24 md:px-6 md:py-32">
       <div className="container relative z-10 mx-auto max-w-6xl">
         <SectionHeader
           eyebrow="Por nivel educativo"
@@ -38,8 +45,16 @@ export function SolutionsByLevel() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {levels.map((level, index) => (
             <BezelCard key={level.title} delay={index * 0.08} innerClassName="flex flex-col">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/[0.04]">
-                <level.icon className="h-6 w-6 text-foreground/65" weight="light" />
+              <div
+                className={cn(
+                  "mb-5 h-12 w-12",
+                  index === 1 ? iconWrapTeal : iconWrapPrimary,
+                )}
+              >
+                <level.icon
+                  className={cn("h-6 w-6", index === 1 ? iconTeal : iconPrimary)}
+                  weight="light"
+                />
               </div>
               <h3 className="mb-3 text-xl font-semibold text-foreground">{level.title}</h3>
               <p className="flex-1 text-sm leading-relaxed text-muted-foreground">

@@ -115,7 +115,7 @@ export default function RootLayout({
     <html lang="es" className={`${plusJakarta.variable} ${spaceGrotesk.variable}`}>
       <head>
         <link rel="canonical" href="https://caweducation.com" />
-        <meta name="theme-color" content="#f8f9fb" />
+        <meta name="theme-color" content="#2090f0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="CAW Education" />
